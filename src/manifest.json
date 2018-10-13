@@ -1,7 +1,7 @@
 {
     "name": "Picture-in-Picture Plus",
     "description": "Let all HTML5 videos force the Picture-in-picture mode!",
-    "version": "0.1",
+    "version": "0.1.0",
     "icons": {
       "100": "assets/icon100.png"
     },

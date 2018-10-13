@@ -15,7 +15,7 @@ async function action(video) {
 
 (() => {
     let video_list = document.querySelectorAll('video');
-    if (!video_list || video_list.length == 0) {
+    if (!video_list || video_list.length === 0) {
         // Try to find from iframe
         const iframe_list = document.querySelectorAll('iframe');
         video_list = Array.from(iframe_list).map((_, i) => iframe_list.item(i).contentWindow.document.body.querySelector('video'))
