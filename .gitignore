@@ -1,0 +1,8 @@
+/.vscode
+/.idea
+
+*.iml
+
+.zip
+
+/dist
