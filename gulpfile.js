@@ -6,6 +6,8 @@ const gcp = require('gulp-copy');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const clean = require('gulp-clean');
+const zip = require('gulp-zip');
+const p = require('./package.json');
 
 function mergeTask() {
     return gulp.src('src/background.js')
@@ -21,27 +23,23 @@ function copyTask() {
 }
 
 function buildTask() {
-    // return gulp
-    //     .src('dist/background.meg.js')
-    //     .pipe(babel({presets: ['es2015']}))
-    //     .pipe(uglify())
-    //     .pipe(rename('background.js'))
-    //     .pipe(gulp.dest('dist'))
 
     return gulp
         .src('dist/background.meg.js')
-        .pipe(rename('background.js'))
         // .pipe(babel({presets: ['es2015']}))
         // .pipe(uglify())
+        .pipe(rename('background.js'))
         .pipe(gulp.dest('build'))
 }
 
 function releaseTask() {
-
+    gulp.src('build/**')
+        .pipe(zip(`release-${p.version}.zip`))
+        .pipe(gulp.dest('dist'))
 }
 
 gulp.task('clean', () => {
-    return gulp.src(['dist', 'build'], {read: false})
+    return gulp.src(['build.crx', 'build.zip', 'dist', 'build'], {read: false})
         .pipe(clean());
 });
 gulp.task('merge', ['clean'], mergeTask);
